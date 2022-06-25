@@ -1,38 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;800&display=swap");
+
 .App {
-  text-align: center;
+  width: 100vw;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Navbaradi .navbar {
+  position: fixed;
+  overflow: hidden;
+
+  top: 0;
+  box-shadow: inset 0px -11px 8px -10px #222427;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+/* Dashboard */
+.Dashboard {
+  height: 100vh;
+}
+
+.singlepage {
+  background-color: #222427;
+}
+
+.landingpage {
+  padding-top: 80px;
+}
+
+.dcontent {
+  top: 60px;
+  left: 50px;
+}
+
+.carouselev {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  max-height: 100vh;
+}
+
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+}
+.carousel-indicators {
+  top: 30px;
+}
+
+.card p {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.bg-transparant {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bdashboard button {
+  border: none;
+  position: fixed;
+  top: -12px;
+  right: 18%;
+  background-position: center;
+  background: url("../public/images/dsb.png") no-repeat;
+  background-size: cover;
+  width: 180px;
+  height: 80px;
+}
+
+.bdashboard button:hover {
+  top: -5px;
+  color: #333;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.bdashboard button:active {
+  color: none;
+  background-color: transparent;
+  border-color: transparent;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+main {
+  height: 100vh;
+  background-color: #c4c4c4;
+}
+
+submenu MenuItem {
+  background-color: white;
+}
+
+.hi {
+  background-color: blue;
+}
+
+.content .btnnewevent {
+  color: #ffffff;
+  font-size: 20px;
+  border-radius: 6px;
+  background-image: linear-gradient(to bottom, rgba(10, 3, 5, 0.664), rgba(199, 71, 88, 0.623)), url("./assets/bimag.jpg");
+  height: 400px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: brightness(80%);
+}
+
+.content .btnnewevent .btntext {
+  color: #ffffff;
+}
+
+.itemcarousel {
+  height: 400px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content #grupbtn {
+  height: 400px;
+  width: 100%;
+  background-image: linear-gradient(to bottom, rgba(10, 3, 5, 0.911), rgb(199, 71, 88));
+  border-radius: 6px;
+}
+
+.content #itemgrupbtn {
+  height: 100%;
+  width: 100%;
+  border-color: #c4c4c4;
+  color: #ffffff;
+}
+
+#judulfilm {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #ffffff;
+}
+
+#listevent {
+  padding-top: 12px;
+}
+
+#itemevent {
+  background-color: #222427;
+}
+
+.MuiToolbar-gutters {
+  background-color: #ffffff;
+  color: #222427;
+}
+
+.navadi {
+  box-shadow: 4px 68px 5px #8f8f8f;
+}
+
+.closeaside {
+  position: absolute;
+  left: 225px;
+  top: 40px;
+}
+
+.workitem {
+  background-color: #222427;
+  color: #ffffff;
+  border-radius: 6px;
+  min-height: 200px;
+}
+
+#infotask {
+  padding-left: 20px;
+}
+
+#btnsie {
+  align-content: top;
+  text-align: right;
+  height: 150px;
+}
+
+.react-kanban-column {
+  background-color: #eeeeee;
+  border-radius: 10px;
+}
+
+.react-kanban-card {
+  background-color: #ffffff;
+  color: black;
+  border-radius: 10px;
+  height: 200px;
+}
+
+.react-kanban-card__title {
+  font-size: 25px;
+  font-style: italic;
+}
+
+.react-kanban-card--dragging {
+  background-color: #eb3f5c;
+  color: rgb(0, 0, 0);
+}
+
+.workitem.MuiPaper-root {
+  background-color: #c95064;
+  color: #ffffff;
+}
+
+.align-items-center .col-auto {
+  padding-right: 15px;
+}
+
+.workitem .worktitle {
+  padding: 20px 40px 20px 40px;
 }

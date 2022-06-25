@@ -1,0 +1,230 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Muhammad Ghazi Alghifari",
+      "email": "ghazi@example.org",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "name": "Dany Christian",
+      "email": "dany@example.com",
+      "password": "123"
+    },
+    {
+      "id": 3,
+      "name": "Ayu Shifa",
+      "email": "ayus@example.org",
+      "password": "123"
+    },
+    {
+      "id": 4,
+      "name": "Bang Nuris",
+      "email": "nuris@example.org",
+      "password": "123"
+    },
+    {
+      "id": 5,
+      "name": "Sabrina Halimah",
+      "email": "hrahimah@example.com",
+      "password": "123"
+    },
+    {
+      "name": "Cendol",
+      "email": "cendl@gmail.com",
+      "password": "1234",
+      "id": 7
+    },
+    {
+      "name": "Navy Maul",
+      "email": "cendl@gmail.com",
+      "password": "1234",
+      "id": 8
+    },
+    {
+      "name": "Naruto Uzumaki",
+      "email": "uzum@gmail.com",
+      "password": "1234",
+      "id": 9
+    },
+    {
+      "name": "Itaachi Uchia",
+      "email": "nonuciha@gmail.com",
+      "password": "1234",
+      "id": 10
+    }
+  ],
+  "event": [
+    {
+      "eventName": "Semarak Ramadhan",
+      "eventDesc": "Kegiatan santri TPA Desa Tanggulangin selama bulan Ramadhan",
+      "time": "25-4-2022",
+      "eventId": "91",
+      "EO": [
+        {
+          "sieName": "Bendahara dan Sekertaris",
+          "sieId": "101",
+          "value": 20,
+          "color": "primary"
+        },
+        {
+          "sieName": "Sie Acara",
+          "sieId": "102",
+          "value": 20,
+          "color": "secondary"
+        },
+        {
+          "sieName": "Sie Humas",
+          "sieId": "103",
+          "value": 10,
+          "color": "tertiary"
+        },
+        {
+          "sieName": "Sie Dekorasi dan Publikasi",
+          "sieId": "104",
+          "value": 10,
+          "color": "primary"
+        },
+        {
+          "sieName": "Sie Konsumsi",
+          "sieId": "105",
+          "value": 10,
+          "color": "secondary"
+        },
+        {
+          "sieName": "Sie Keamanan",
+          "sieId": "106",
+          "value": 10,
+          "color": "tertiary"
+        },
+        {
+          "sieName": "Die Dokumenasi",
+          "sieId": "107",
+          "value": 10,
+          "color": "primary"
+        },
+        {
+          "sieName": "Sie Perlengkapan",
+          "sieId": "108",
+          "value": 10,
+          "color": "secondary"
+        }
+      ]
+    },
+    {
+      "eventName": "Bukber Angkatan 56",
+      "eventDesc": "Kegiatan buka bersama dengan Alumni SMA Negeri 1 Wonosari pada bulan Ramadhan",
+      "time": "21-4-2022",
+      "eventId": "92",
+      "EO": [
+        {
+          "sieName": "Bendahara dan Sekertaris",
+          "sieId": "101"
+        },
+        {
+          "sieName": "Sie Acara",
+          "sieId": "102"
+        },
+        {
+          "sieName": "Sie Humas",
+          "sieId": "103"
+        },
+        {
+          "sieName": "Sie Dekorasi dan Publikasi",
+          "sieId": "104"
+        },
+        {
+          "sieName": "Sie Konsumsi",
+          "sieId": "105"
+        },
+        {
+          "sieName": "Sie Keamanan",
+          "sieId": "106"
+        },
+        {
+          "sieName": "Die Dokumenasi",
+          "sieId": "107"
+        },
+        {
+          "sieName": "Sie Perlengkapan",
+          "sieId": "108"
+        }
+      ]
+    }
+  ],
+  "EO": [
+    {
+      "sieName": "Bendahara dan Sekertaris",
+      "sieId": "1",
+      "check": 6,
+      "uncheck": 9,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Acara",
+      "sieId": "2",
+      "check": 9,
+      "uncheck": 24,
+
+      "dl": "27-5-2022",
+      "info": "Susunan acara hari H (FIX)"
+    },
+    {
+      "sieName": "Sie Humas",
+      "sieId": "3",
+      "check": 12,
+      "uncheck": 17,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Dekorasi dan Publikasi",
+      "sieId": "4",
+      "check": 3,
+      "uncheck": 12,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Konsumsi",
+      "sieId": "5",
+      "check": 5,
+      "uncheck": 13,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Keamanan",
+      "sieId": "6",
+      "check": 1,
+      "uncheck": 5,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Dokumenasi",
+      "sieId": "7",
+      "check": 11,
+      "uncheck": 22,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    },
+    {
+      "sieName": "Sie Perlengkapan",
+      "sieId": "8",
+      "check": 12,
+      "uncheck": 21,
+
+      "dl": "22-5-2022",
+      "info": "Penyerahan proposal kepada Kepala Sekolah"
+    }
+  ]
+}
