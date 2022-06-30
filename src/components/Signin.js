@@ -8,8 +8,6 @@ import { faFacebookF, faGithub, faTwitter } from "@fortawesome/free-brands-svg-i
 import { Col, Row, Form, Card, Button, FormCheck, Container, InputGroup } from "@themesberg/react-bootstrap";
 
 import "../App.css";
-
-import BgImage from "../assets/signin.svg";
 import { Login } from "@mui/icons-material";
 
 const Signin = () => {
@@ -111,7 +109,7 @@ const Signin = () => {
                 <FontAwesomeIcon icon={faAngleLeft} className="me-2" /> Back to homepage
               </Card.Link>
             </p>
-            <Row className="justify-content-center form-bg-image" style={{ backgroundImage: `url(${BgImage})` }}>
+            <Row className="justify-content-center form-bg-image">
               <Col xs={12} className="d-flex align-items-center justify-content-center">
                 <div className="bg-white shadow-soft border rounded border-light p-4 p-lg-5 w-100 fmxw-500">
                   {success ? (

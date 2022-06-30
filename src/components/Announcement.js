@@ -54,7 +54,7 @@ export const Announcement = () => {
   };
 
   return (
-    <div className="content tablemember">
+    <div className="content">
       <Card border="light" className="shadow-sm mb-4">
         <Card.Body className="pb-0">
           <Table responsive className="table-centered table-nowrap rounded mb-0">

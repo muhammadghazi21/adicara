@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp, faChartArea, faChartBar, faChartLine, faFlagUsa, faFolderOpen, faGlobeEurope, faPaperclip, faHandshake, faBook, faCalendar, faGift } from "@fortawesome/free-solid-svg-icons";
@@ -137,14 +138,46 @@ export const BarChartWidget = (props) => {
 };
 
 export const TeamMembersWidget = () => {
-  const [response, setResponse] = useState([]);
-  useEffect(() => {
-    axios.get("http://localhost:3004/user").then((result) => {
-      console.log("datas => ", result.data);
-      setResponse(result.data);
-    });
-  }, []);
+  const navigate = useNavigate();
+  const [member, setMember] = useState([]);
 
+  const baseUrl = "https://api.adicara.kiarta.id/api";
+  const token = sessionStorage.getItem("token");
+  let { id } = useParams();
+
+  var config = {
+    method: "get",
+    url: baseUrl + "/event/" + id,
+    headers: {
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  useEffect(() => {
+    axios(config)
+      .then((res) => {
+        console.log("hasil +>", res.data.data.user);
+        setMember(res.data.data.user);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
+  }, []);
   const TeamMember = (props) => {
     const { name, statusKey, image, icon, btnText } = props;
     const status = {
@@ -161,20 +194,17 @@ export const TeamMembersWidget = () => {
         <Row className="align-items-center">
           <Col className="col-auto">
             <a href="#top" className="user-avatar">
-              <Image src={image} className="rounded-circle" />
+              {/* <Image src={image} className="rounded-circle" /> */}
             </a>
           </Col>
           <Col className="ms--2">
             <h4 className="h6 mb-0">
-              <a href="#!">{name}</a>
+              <a href="#!">{member.name}</a>
             </h4>
-            <span className={`text-${statusColor}`}>● </span>
-            <small>{statusLabel}</small>
           </Col>
           <Col className="col-auto">
-            <Button variant="tertiary" size="sm">
-              <FontAwesomeIcon icon={icon} className="me-1" /> {btnText}
-            </Button>
+            <span className={`text-${statusColor}`}>● </span>
+            <small>{statusLabel}</small>
           </Col>
         </Row>
       </ListGroup.Item>
@@ -191,11 +221,7 @@ export const TeamMembersWidget = () => {
       </Card.Header>
       <Card.Body>
         <ListGroup className="list-group-flush list my--3">
-          {response.map((data) => {
-            while (data.id <= 5) {
-              return <TeamMember key={`team-member-${data.id}`} {...data} />;
-            }
-          })}
+          <TeamMember key={`team-member-${id}`} />
         </ListGroup>
       </Card.Body>
     </Card>
@@ -203,13 +229,43 @@ export const TeamMembersWidget = () => {
 };
 
 export const ProgressTrackWidget = () => {
-  const [response, setResponse] = useState([]);
+  const [eventPosition, setEventPosition] = useState([]);
+
+  const baseUrl = "https://api.adicara.kiarta.id/api";
+  const token = sessionStorage.getItem("token");
+  let { id } = useParams();
   useEffect(() => {
-    axios.get("http://localhost:3004/EO").then((result) => {
-      console.log("datas => ", result.data);
-      setResponse(result.data);
-    });
+    axios({
+      method: "get",
+      url: baseUrl + "/event/" + id + "/position",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data.data);
+        setEventPosition(res.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
   }, []);
+
   const Progress = (props) => {
     const { title, percentage, icon, color, last = false } = props;
     const extraClassName = last ? "" : "mb-2";
@@ -242,9 +298,9 @@ export const ProgressTrackWidget = () => {
         <h5 className="mb-0">Progress track</h5>
       </Card.Header>
       <Card.Body>
-        {response.map((data) => {
-          while (data.sieId <= 110) {
-            return <Progress title={data.sieName} color="purple" icon={data.icon} percentage={(data.check / data.uncheck) * 100} />;
+        {eventPosition.map((data) => {
+          while (data.id <= 18) {
+            return <Progress title={data.nama_jabatan} color="purple" icon={data.icon} percentage={(data.jumlah_maksimum / data.jumlah_maksimum) * 100} />;
           }
         })}
       </Card.Body>

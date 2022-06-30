@@ -10,6 +10,14 @@ import Typography from "@mui/material/Typography";
 import { Button, CardActionArea, CardActions } from "@mui/material";
 import { Col, Row } from "@themesberg/react-bootstrap";
 import { CounterWidget, CircleChartWidget, BarChartWidget, TeamMembersWidget, ProgressTrackWidget, RankingWidget, SalesValueWidget, SalesValueWidgetPhone, AcquisitionWidget } from "./Widgets";
+import AddIcon from "@mui/icons-material/Add";
+
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 import { Announcement } from "./Announcement";
 import { Member } from "./Member";
@@ -17,7 +25,7 @@ import { Member } from "./Member";
 export default function Workspace(props) {
   const navigate = useNavigate();
   const [event, setEvent] = useState("");
-  const [eventData, setEventData] = useState([]);
+  const [eventPosition, setEventPosition] = useState([]);
 
   const baseUrl = "https://api.adicara.kiarta.id/api";
   const token = sessionStorage.getItem("token");
@@ -58,11 +66,95 @@ export default function Workspace(props) {
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:3004/EO`).then((result) => {
-      console.log("datas => ", result.data);
-      setEventData(result.data);
-    });
+    axios({
+      method: "get",
+      url: baseUrl + "/event/" + id + "/position",
+      headers: {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        console.log(res.data.data);
+        setEventPosition(res.data.data);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
   }, []);
+
+  //teks tambah sie
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [addPositionName, setAddPositionName] = useState("");
+  const [addPositionMember, setAddPositionMember] = useState("");
+
+  axios.defaults.headers.common = {
+    "X-Requested-With": "XMLHttpRequest",
+    "X-CSRF-TOKEN": window.csrf_token,
+  };
+
+  const tambahPosition = async () => {
+    var data = new FormData();
+    data.append("nama_jabatan", addPositionName);
+    data.append("jumlah_maksimum", addPositionMember);
+
+    var config = {
+      method: "post",
+      url: baseUrl + "/event/" + id + "/position",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+      data: data,
+    };
+    axios(config)
+      .then((res) => {
+        console.log(res);
+        handleClose();
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          // that falls out of the range of 2xx
+          console.log(error.response.data);
+          console.log(error.response.status);
+          console.log(error.response.headers);
+        } else if (error.request) {
+          // The request was made but no response was received
+          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+          // http.ClientRequest in node.js
+          console.log(error.request);
+        } else {
+          // Something happened in setting up the request that triggered an Error
+          console.log("Error", error.message);
+        }
+      });
+  };
 
   return (
     <div className="content">
@@ -82,7 +174,7 @@ export default function Workspace(props) {
               </div>
             </Col>
             <Col xs={12} xl={12}>
-              <Row className="mb-0">
+              <Row className="mb-4">
                 <Col xs={12} lg={4}>
                   <TeamMembersWidget />
                 </Col>
@@ -95,7 +187,7 @@ export default function Workspace(props) {
           </Row>
         </Col>
         <Col xs={12} xl={4}>
-          <Row className="mb-0">
+          <Row className="mb-4">
             <Col xs={12}>
               <ProgressTrackWidget />
             </Col>
@@ -103,7 +195,7 @@ export default function Workspace(props) {
         </Col>
       </Row>
       <Row>
-        {eventData.map((data) => {
+        {eventPosition.map((data) => {
           return (
             <Col className="mb-4" xs={6} sm={4} xl={3}>
               <Card className="workitem">
@@ -115,19 +207,39 @@ export default function Workspace(props) {
                 >
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                      {data.sieName}
+                      {data.nama_jabatan}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
                 <CardActions id="infotask">
                   <h2>
-                    {data.check}/{data.uncheck}
+                    {data.jumlah_maksimum}/{data.jumlah_maksimum}
                   </h2>
                 </CardActions>
               </Card>
             </Col>
           );
         })}
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Make New Committee Workspace</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Maybe the loading little bit longer because this function need more space to work, btw fill the form to make a new Committee</DialogContentText>
+            <TextField autoFocus margin="dense" id="name" label="Nama Panitia" type="text" fullWidth variant="standard" onChange={(e) => setAddPositionName(e.target.value)} />
+            <TextField autoFocus margin="dense" id="name" label="Jumlah anggota" type="text" variant="standard" onChange={(e) => setAddPositionMember(e.target.value)} />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Batal</Button>
+            <Button onClick={tambahPosition}>Tambah</Button>
+          </DialogActions>
+        </Dialog>
+
+        <Col className="mb-4" xs={6} sm={4} xl={3}>
+          <Card variant="light">
+            <CardActionArea id="btnsie" onClick={handleClickOpen}>
+              <AddIcon sx={{ fontSize: "120px" }} />
+            </CardActionArea>
+          </Card>
+        </Col>
       </Row>
     </div>
   );
